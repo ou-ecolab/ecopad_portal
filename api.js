@@ -7,10 +7,10 @@ $(function() {
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
     user_url = base_url + "/user/?format=json";
     prevlink=null;nextlink=null;
-    set_auth(base_url,login_url);
+    //set_auth(base_url,login_url);
     $("#aprofile").click(function(){activaTab('profile')})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
-    load_task_history(user_task_url);
+    //load_task_history(user_task_url);
     $('#prevlink').click(function(){load_task_history(prevlink);});
     $('#nextlink').click(function(){load_task_history(nextlink);});
     Handlebars.registerHelper('json_metatags', function(context) {
@@ -20,10 +20,16 @@ $(function() {
                     return ""
                 } 
     });
+    data= {"vegtype":"DBF", "max_soil_water":20.0}
+    load_workflow(data);
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
-
+function load_workflow(data){
+    $('#home').empty();
+    workflow_template = Handlebars.templates['tmpl-workflow'];
+    $('#home').append(workflow_template(data));
+}
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
