@@ -1,7 +1,5 @@
-### Restful-api Application-template
+### EcoPAD Portal
 =====================
-Application template for use with [restful-api](https://github.com/ouinformatics/restful-api)
-
 ## Requires 
 * bootstrap
 * jquery
