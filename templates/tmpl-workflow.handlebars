@@ -2,9 +2,13 @@
      <div>    
 
         <form id="parameters" class="form-stacked">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
             <fieldset>
             <div class="span4" style="float:left">
-            
+                     
                     <label for="latitude" title="latitude">Latitude</label><input name="latitude" id="latitude" value="{{ lat }}" type="text"><br>
 		   <label for="longitude" title="longitude">Longitude</label><input name="longitude" id="longitude" value="{{ longitude }}" type="text"><br>
                     <label for="wsmax" title="Maximum soil water">Maximum soil water (wsmax)</label><input name="wsmax" id="wsmax" value="{{ wsmax }}" type="text"><br>
