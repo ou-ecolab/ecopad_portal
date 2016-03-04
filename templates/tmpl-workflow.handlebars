@@ -5,9 +5,9 @@
             <fieldset>
             <div class="span4" style="float:left">
                 <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-            </div>
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" name="email" class="form-control input-sm" id="exampleInputEmail1" placeholder="Email">
+                </div>
                      
                     <label for="latitude" title="latitude">Latitude</label><input name="latitude" id="latitude" value="{{ lat }}" type="text"><br>
 		   <label for="longitude" title="longitude">Longitude</label><input name="longitude" id="longitude" value="{{ longitude }}" type="text"><br>
@@ -27,10 +27,10 @@
                     <label for="stom_n" title="Stoma Number: 1 equals only in one side of leaf, 2 equals Stoma in both leaf sides">Stoma Number (stom_n)</label><input name="stom_n" id="stom_n" value="{{ stom_n }}" type="text"><br>
                     <label for="a1" title="a1 is an empirical coefficient in the photosythetic process (See Wang &amp; leuning - 1998)">a1 coefficient</label><input name="a1" id="a1" value="{{ a1 }}" type="text"><br>
                     <label for="Ds0" title=" Ds0 is a coefficient related to VPD (Vapor Pressure Deficit) to affect Stomata Coductance in photosythetic subroutines">Ds0 coefficient</label><input name="Ds0" id="Ds0" value="{{ Ds0 }}" type="text"><br>
-		  </div>
+	    </div>
                 
-                <div class="span1" style="float:left;COLOR:white;">.</div>
-                <div class="span4" style="float:left">
+            <div class="span1" style="float:left;COLOR:white;">.</div>
+            <div class="span4" style="float:left">
                     <label for="Vcmx0" title="Maximum rate of Carboxylation (vcmx0)">Maximum Rate of Carboxylation</label><input name="Vcmx0" id="Vcmx0" value="{{ Vcmx0 }}" type="text"><br>
                     <label for="extkU">extkU</label><input name="extkU" id="extkU" value="{{ extkU }}" type="text"><br>
                     <label for="xfang" title="Coefficient in Photosythesis Subroutine(Reference - Sellers 1985 eq.13)(xfang)">Coefficient in Photosythesis Subroutine</label><input name="xfang" id="xfang" value="{{ xfang }}" type="text"><br>
@@ -48,7 +48,7 @@
 	       <label for="Rl0" title="Rl0"> Rl0 </label><input name="Rl0" id="Rl0" value="{{ Rl0 }}" type="text"><br>
 		<label for="Rs0" title="Rs0"> Rs0 </label><input name="Rs0" id="Rs0" value="{{ Rs0 }}" type="text"><br>
 		<label for="Rr0" title="Rr0"> Rr0 </label><input name="Rr0" id="Rr0" value="{{ Rr0 }}" type="text"><br>
-                 </div>
+            </div>
             </fieldset>
         </form>
     
