@@ -3,7 +3,7 @@
 
         <form id="parameters" class="form-stacked">
             <fieldset>
-            <div class="col-md-4" style="float:left">
+            <div class="col-sm-3.5" style="float:left">
                 <div class="form-group">
                     <label for="latitude">Latitude</label>
                     <input type="latitude" name="latitude" class="form-control input-sm"  id="latitude" value="{{ lat }}">
@@ -52,34 +52,35 @@
                     <label for="SLA"> Specific Leaf Area (SLA) </label>
                     <input type="SLA" name="SLA" class="form-control input-sm" id="SLA" value="{{ SLA }}">
                 </div>
-		<div class="form-group">
-                    <label for="GLmax"> Maximum Leaf Growth Rate (GLmax) </label>
-                    <input type="GLmax" name="GLmax" class="form-control input-sm" id="GLmax" value="{{ GLmax }}">
-                </div>
-		<div class="form-group">
-                    <label for="GRmax"> Maximum Root Growth Rate (GRmax) </label>
-                    <input type="GRmax" name="GRmax" class="form-control input-sm" id="GRmax" value="{{ GRmax }}">
-                </div>
-		<div class="form-group">
-                    <label for="Gsmax"> Maximum Stem Growth Rate (Gsmax) </label>
-                    <input type="Gsmax" name="Gsmax" class="form-control input-sm" id="Gsmax" value="{{ Gsmax }}">
-                </div>
-		<div class="form-group">
-                    <label for="stom_n"> Stoma Number (stom_n) </label>
-                    <input type="stom_n" name="stom_n" class="form-control input-sm" id="stom_n" value="{{ stom_n }}">
-                </div>
-		<div class="form-group">
-                    <label for="a1"> a1 coefficient </label>
-                    <input type="a1" name="a1" class="form-control input-sm" id="a1" value="{{ a1 }}">
-                </div>                   
-		<div class="form-group">
-                    <label for="Ds0"> Ds0 coefficient </label>
-                    <input type="Ds0" name="Ds0" class="form-control input-sm" id="Ds0" value="{{ Ds0 }}">
-                </div>  
 	    </div> 
 
             <div class="span1" style="float:left;COLOR:white;">.</div>
-            <div class="col-md-4" style="float:left">
+            <div class="col-sm-3.5" style="float:left">
+                <div class="form-group">
+                    <label for="GLmax"> Maximum Leaf Growth Rate (GLmax) </label>
+                    <input type="GLmax" name="GLmax" class="form-control input-sm" id="GLmax" value="{{ GLmax }}">
+                </div>
+                <div class="form-group">
+                    <label for="GRmax"> Maximum Root Growth Rate (GRmax) </label>
+                    <input type="GRmax" name="GRmax" class="form-control input-sm" id="GRmax" value="{{ GRmax }}">
+                </div>
+                <div class="form-group">
+                    <label for="Gsmax"> Maximum Stem Growth Rate (Gsmax) </label>
+                    <input type="Gsmax" name="Gsmax" class="form-control input-sm" id="Gsmax" value="{{ Gsmax }}">
+                </div>
+                <div class="form-group">
+                    <label for="stom_n"> Stoma Number (stom_n) </label>
+                    <input type="stom_n" name="stom_n" class="form-control input-sm" id="stom_n" value="{{ stom_n }}">
+                </div>
+                <div class="form-group">
+                    <label for="a1"> a1 coefficient </label>
+                    <input type="a1" name="a1" class="form-control input-sm" id="a1" value="{{ a1 }}">
+                </div>
+                <div class="form-group">
+                    <label for="Ds0"> Ds0 coefficient </label>
+                    <input type="Ds0" name="Ds0" class="form-control input-sm" id="Ds0" value="{{ Ds0 }}">
+                </div>                
+
 		<div class="form-group">
                     <label for="Vcmx0"> Maximum rate of Carboxylation (vcmx0) </label>
                     <input type="Vcmx0" name="Vcmx0" class="form-control input-sm" id="Vcmx0" value="{{ Vcmx0 }}">
@@ -104,50 +105,53 @@
                     <label for="Tau_Wood"> Turnover rate of woody pool (Tau_Wood) </label>
                     <input type="Tau_Wood" name="Tau_Wood" class="form-control input-sm" id="Tau_Wood" value="{{ Tau_Wood }}">
                </div>  
-		<div class="form-group">
+            </div>
+            <div class="span1" style="float:left;COLOR:white;">.</div>
+            <div class="col-sm-3.5" style="float:left">
+               <div class="form-group">
                     <label for="Tau_Root"> Turnover rate of root pool (Tau_Root) </label>
                     <input type="Tau_Root" name="Tau_Root" class="form-control input-sm" id="Tau_Root" value="{{ Tau_Root }}">
-               </div>  
-		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Tau_F"> Turnover rate of fine-root pool (Tau_F) </label>
                     <input type="Tau_F" name="Tau_F" class="form-control input-sm" id="Tau_F" value="{{ Tau_F }}">
-               </div> 
-		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Tau_C"> Turnover rate of course-root pool (Tau_C) </label>
                     <input type="Tau_C" name="Tau_C" class="form-control input-sm" id="Tau_C" value="{{ Tau_C }}">
-               </div> 
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Tau_Micro"> Turnover rate of microbial pool (Tau_Micro) </label>
                     <input type="Tau_Micro" name="Tau_Micro" class="form-control input-sm" id="Tau_Micro" value="{{ Tau_Micro }}">
-               </div>              
-		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Tau_SlowSOM"> Turnover rate of slow SOM (Tau_SlowSOM) </label>
                     <input type="Tau_SlowSOM" name="Tau_SlowSOM" class="form-control input-sm" id="Tau_SlowSOM" value="{{ Tau_SlowSOM }}">
-               </div>  
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Tau_Passive"> Turnover rate Passive Soil(Tau_Passive) </label>
                     <input type="Tau_Passive" name="Tau_Passive" class="form-control input-sm" id="Tau_Passive" value="{{ Tau_Passive }}">
-               </div> 
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="gddonset"> Growing degree days (gddonset) </label>
                     <input type="gddonset" name="gddonset" class="form-control input-sm" id="gddonset" value="{{ gddonset }}">
-               </div>              
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Q10"> Q10 </label>
                     <input type="Q10" name="Q10" class="form-control input-sm" id="Q10" value="{{ Q10 }}">
-               </div>  
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Rl0"> Rl0 </label>
                     <input type="Rl0" name="Rl0" class="form-control input-sm" id="Rl0" value="{{ Rl0 }}">
-               </div>                     
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Rs0"> Rs0 </label>
                     <input type="Rs0" name="Rs0" class="form-control input-sm" id="Rs0" value="{{ Rs0 }}">
-               </div> 
- 		<div class="form-group">
+               </div>
+                <div class="form-group">
                     <label for="Rr0"> Rr0 </label>
                     <input type="Rr0" name="Rr0" class="form-control input-sm" id="Rr0" value="{{ Rr0 }}">
-               </div> 
+               </div>
             </div>
             </fieldset>
         </form>
