@@ -27,6 +27,8 @@ $(function() {
 });//End of Document Ready
 function load_workflow(data){
     $('#home').empty();
+    workflow_template = Handlebars.templates['tmpl-ecopad'];
+    $('#home').append(workflow_template({}));
     workflow_template = Handlebars.templates['tmpl-workflow'];
     $('#home').append(workflow_template(data));
 }
