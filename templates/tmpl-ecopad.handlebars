@@ -3,21 +3,28 @@
                 <tr>
                     <td class="col-md-2">Task <br><br> Model</td>
                     <td > 
-                        <select id="task" class="selectpicker col-md-2">
+                        <div class="form-group input-sm col-sm-6">
+                        <select id="task" class="form-control input-sm">
                             <option value="simulation">Simulation</option>
                             <option value="DA">Data Assimilation</option>
                             <option value="forcasting">Forecasting</option>
-                        </select><br><br>
-                        <select id="Model" class="selectpicker col-md-2" >
+                        </select>
+                        <select id="Model" class="form-control input-sm" >
                             <option value="teco_spruce">TECO Spruce</option>
                         </select>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>Initial Parameters</td>
-                    <td colspan="2"><button style="width: 217px;" aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="opener" type="button"><span class="ui-button-text">Set Initial Parameters</span></button></td>
+                    <td colspan="2" class="form-group">
+                        <div class="col-sm-6">
+                          <button id="setModelParameter" class="btn btn-primary-outline " type="button" >Set Initial Parameters</button>
+                          <button id="runModel" class="btn btn-info-outline " type="button" >Run Model</button>
+                        </div>
+                    </td>
                 </tr>
-                <tr id="init_data">
+                <tr id="init_data" class="hidden">
                     <td>Initialize Data</td>
                     <td colspan="2">
                         <button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="fopener" type="button"><span class="ui-button-text">Simulation Weather Years</span></button><br><br>
@@ -29,7 +36,7 @@
                           <button style="width: 217px;" aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="fyr_opener" type="button"><span class="ui-button-text">Forcasting Weather Years</span></button>
                       </td>
                   </tr>
-                <tr id="mw">
+                <tr id="mw" class="hidden">
                     <td><input id="mod_weather" value="mod_weather" type="checkbox">&nbsp;Modify Weather</td>
                     <td colspan="3"><input id="mod_w_txt" style="width: 90%; display: none;" value="{'T_air':[('add',0)]}" type="text">
                     <button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="display: none;" id="mw_opener" type="button"><span class="ui-button-text">Help</span></button>
@@ -37,3 +44,4 @@
                 </tr>
                 </tbody>
             </table>
+            <div id='task_result'></div>

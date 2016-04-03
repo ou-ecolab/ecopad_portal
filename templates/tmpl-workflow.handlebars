@@ -1,14 +1,12 @@
-     <h2>Workflow</h2>
      <div>    
-
         <form id="parameters" class="form-stacked">
             <fieldset>
             <div class="col-sm-3.5" style="float:left">
-                <div class="form-group">
+                <div class="form-group hidden">
                     <label for="latitude">Latitude</label>
                     <input type="latitude" name="latitude" class="form-control input-sm"  id="latitude" value="{{ lat }}">
                 </div>
-		<div class="form-group">
+		<div class="form-group hidden">
                     <label for="longitude"> Longitude </label>
                     <input type="longitude" name="longitude" class="form-control input-sm" id="longitude" value="{{ longitude }}">
                 </div>
@@ -52,14 +50,14 @@
                     <label for="SLA"> Specific Leaf Area (SLA) </label>
                     <input type="SLA" name="SLA" class="form-control input-sm" id="SLA" value="{{ SLA }}">
                 </div>
-	    </div> 
-
-            <div class="span1" style="float:left;COLOR:white;">.</div>
-            <div class="col-sm-3.5" style="float:left">
                 <div class="form-group">
                     <label for="GLmax"> Maximum Leaf Growth Rate (GLmax) </label>
                     <input type="GLmax" name="GLmax" class="form-control input-sm" id="GLmax" value="{{ GLmax }}">
                 </div>
+	    </div> 
+
+            <div class="span1" style="float:left;COLOR:white;">.</div>
+            <div class="col-sm-3.5" style="float:left">
                 <div class="form-group">
                     <label for="GRmax"> Maximum Root Growth Rate (GRmax) </label>
                     <input type="GRmax" name="GRmax" class="form-control input-sm" id="GRmax" value="{{ GRmax }}">

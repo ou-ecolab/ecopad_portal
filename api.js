@@ -7,10 +7,10 @@ $(function() {
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
     user_url = base_url + "/user/?format=json";
     prevlink=null;nextlink=null;
-    //set_auth(base_url,login_url);
+    set_auth(base_url,login_url);
     $("#aprofile").click(function(){activaTab('profile')})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
-    //load_task_history(user_task_url);
+    load_task_history(user_task_url);
     $('#prevlink').click(function(){load_task_history(prevlink);});
     $('#nextlink').click(function(){load_task_history(nextlink);});
     Handlebars.registerHelper('json_metatags', function(context) {
@@ -22,15 +22,45 @@ $(function() {
     });
     data= {"lat":47.50, "longitude":-93.46,"wsmax":60.1,"wsmin":0.2,"LAIMAX":5.3,"LAIMIN":0.3,"rdepth":150,"Rootmax":500,"Stemmax":1000,"SapR":1.0,"SapS":0.2,"SLA":40.0,"GLmax":39.2,"GRmax":20.25,"Gsmax":20.25,"stom_n":2,"a1":8,"Ds0":2000,"Vcmx0":80,"extkU":0.51,"xfang":0,"alpha":0.385,"Tau_Leaf":1.5,"Tau_Wood":40.0,"Tau_Root":0.8,"Tau_F":0.3,"Tau_C":5.86,"Tau_Micro":0.4,"Tau_SlowSOM":356.94,"Tau_Passive":2050.0,"gddonset":140.0,"Q10":2.0,"Rl0":30.2,"Rs0":7,"Rr0":29.0}
     load_workflow(data);
+    //Load Inital Parameters
+    $('#setModelParameter').click(function(){showInitParameters();});
+    $('#runModel').clik(function(){ submitWorkflow();});
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
+function submitWorkflow(){
+    $.postJSON(url, $('#parameters').serializeObject(),function(data){
+        $('#task_result').empty();
+        $('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
+    });
+    $('#task_result').urlize();
+
+}
+$.postJSON = function(url, data, callback,fail) {
+    return jQuery.ajax({
+        'type': 'POST',
+        'url': url,
+        'contentType': 'application/json',
+        'data': JSON.stringify(data),
+        'dataType': 'json',
+        'success': callback,
+        'error':fail,
+        'beforeSend':function(xhr, settings){
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    });
+}; 
+function showInitParameters(){
+    $("#myParameterModal").modal('show');
+}
 function load_workflow(data){
     $('#home').empty();
     workflow_template = Handlebars.templates['tmpl-ecopad'];
     $('#home').append(workflow_template({}));
+    //Load Parameters into modal pop up
+    $('#myParameterModalbody').empty();
     workflow_template = Handlebars.templates['tmpl-workflow'];
-    $('#home').append(workflow_template(data));
+    $('#myParameterModalbody').append(workflow_template(data));
 }
 function submit_user(){
     console.log(user_url)
