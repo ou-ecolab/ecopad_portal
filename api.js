@@ -35,7 +35,7 @@ function submitWorkflow(){
     $.postJSON(url,task_data ,function(data){
         $('#task_result').empty();
         //$('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
-        $('#task_result').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html/?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
+        $('#task_result').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
         //$('#task_result').urlize();
     });
 
