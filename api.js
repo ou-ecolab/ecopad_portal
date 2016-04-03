@@ -29,12 +29,17 @@ $(function() {
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
 function submitWorkflow(){
+    task_data = {"function": "ecopadq.tasks.tasks.teco_spruce_model","queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{},"tags":[]};
+    url = "/api/queue/run/ecopadq.tasks.tasks.teco_spruce_model/.json"
+
     $.postJSON(url, $('#parameters').serializeObject(),function(data){
         $('#task_result').empty();
-        $('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
+        //$('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
+        $('#task_result').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html/?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
+        //$('#task_result').urlize();
     });
-    $('#task_result').urlize();
 
+<iframe width="100%" frameborder="0" id="myIframe" src="" style="min-height:420px;"></iframe>
 }
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({
