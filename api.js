@@ -24,7 +24,7 @@ $(function() {
     load_workflow(data);
     //Load Inital Parameters
     $('#setModelParameter').click(function(){showInitParameters();});
-    $('#runModel').clik(function(){ submitWorkflow();});
+    $('#runModel').click(function(){ submitWorkflow();});
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
