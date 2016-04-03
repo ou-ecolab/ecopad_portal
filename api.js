@@ -39,7 +39,6 @@ function submitWorkflow(){
         //$('#task_result').urlize();
     });
 
-<iframe width="100%" frameborder="0" id="myIframe" src="" style="min-height:420px;"></iframe>
 }
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({
