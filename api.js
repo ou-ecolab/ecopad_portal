@@ -33,9 +33,12 @@ function submitWorkflow(){
     url = "/api/queue/run/ecopadq.tasks.tasks.teco_spruce_model/.json"
 
     $.postJSON(url,task_data ,function(data){
-        $('#task_result').empty();
+        work_flow_temp = Handlebars.templates['tmpl-workflow_reset'];
+        $('#home').empty();
+        $('#home').append(workflow_template({'model':'TECO Spruce '}));
+        //$('#task_result').empty();
         //$('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
-        $('#task_result').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
+        $('#home').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
         //$('#task_result').urlize();
     });
 
