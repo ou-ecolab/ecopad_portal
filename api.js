@@ -35,7 +35,7 @@ function submitWorkflow(){
     $.postJSON(url,task_data ,function(data){
         work_flow_temp = Handlebars.templates['tmpl-workflow_reset'];
         $('#home').empty();
-        $('#home').append(workflow_template({'model':'TECO Spruce '}));
+        $('#home').append(work_flow_temp({'model':'TECO Spruce '}));
         //$('#task_result').empty();
         //$('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
         $('#home').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
