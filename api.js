@@ -147,7 +147,7 @@ function load_task_history(url){
     $.each(data.results, function(i, item) {
         temp=item.task_name.split('.')
         item['task_name']= temp[temp.length-1]
-        item.timestamp = item.timestamp.substring(0,19).replace('T',' ')
+        item.timestamp = item.timestamp; // .substring(0,19).replace('T',' ')
         $('#result_tbody').append(tr_template(item)) 
     });
     });
