@@ -44,6 +44,7 @@ function submitWorkflow(){
         //$('#task_result').append("<pre>" + JSON.stringify(data,null, 4) + "</pre>");
         $('#home').append('<iframe width="100%" frameborder="0" id="myIframe" src="history_result_meta.html?task_id=' + data.task_id + '" style="min-height:420px;"></iframe>');
         //$('#task_result').urlize();
+        load_task_history(user_task_url);
     });
 
 }
