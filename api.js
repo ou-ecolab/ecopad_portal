@@ -20,6 +20,10 @@ $(function() {
                     return ""
                 } 
     });
+    Handlebars.registerHelper('time_zone',function(context){
+        temp = new Date(context + "Z");
+        return temp.toLocaleDateString() + "  " + temp.toLocaleTimeString();
+    });
     data= {"lat":47.50, "longitude":-93.46,"wsmax":60.1,"wsmin":0.2,"LAIMAX":5.3,"LAIMIN":0.3,"rdepth":150,"Rootmax":500,"Stemmax":1000,"SapR":1.0,"SapS":0.2,"SLA":40.0,"GLmax":39.2,"GRmax":20.25,"Gsmax":20.25,"stom_n":2,"a1":8,"Ds0":2000,"Vcmx0":80,"extkU":0.51,"xfang":0,"alpha":0.385,"Tau_Leaf":1.5,"Tau_Wood":40.0,"Tau_Root":0.8,"Tau_F":0.3,"Tau_C":5.86,"Tau_Micro":0.4,"Tau_SlowSOM":356.94,"Tau_Passive":2050.0,"gddonset":140.0,"Q10":2.0,"Rl0":30.2,"Rs0":7,"Rr0":29.0}
     load_workflow(data);
     //Load Inital Parameters
