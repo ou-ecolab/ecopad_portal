@@ -33,7 +33,8 @@ $(function() {
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
 function submitWorkflow(){
-    task_data = {"function": "ecopadq.tasks.tasks.teco_spruce_model","queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{},"tags":[]};
+    //model_type
+    task_data = {"function": "ecopadq.tasks.tasks.teco_spruce_model","queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{"model_type":$("#task").prop('selectedIndex')},"tags":[]};
     url = "/api/queue/run/ecopadq.tasks.tasks.teco_spruce_model/.json"
 
     $.postJSON(url,task_data ,function(data){
