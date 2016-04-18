@@ -1,4 +1,6 @@
 $(function() {
+    activaTab('homedesc');
+    $('#user').hide();
     //Customize by setting base_url to cybercom/api docker application
     base_url = "/api";
     //No other alterations is need to get the standard applicaiton running!
@@ -7,31 +9,47 @@ $(function() {
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
     user_url = base_url + "/user/?format=json";
     prevlink=null;nextlink=null;
-    set_auth(base_url,login_url);
+    //set_auth(base_url,login_url);
+    
     $("#aprofile").click(function(){activaTab('profile')})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
-    load_task_history(user_task_url);
+    //load_task_history(user_task_url);
     $('#prevlink').click(function(){load_task_history(prevlink);});
     $('#nextlink').click(function(){load_task_history(nextlink);});
     Handlebars.registerHelper('json_metatags', function(context) {
-                if (typeof context !== 'undefined') {
-                    return JSON.stringify(context).replace(/"/g,'').replace(/\[/g,'').replace(/\]/g,'').replace(/,/g,', ');
-                }else{
-                    return ""
-                } 
+        if (typeof context !== 'undefined') {
+            return JSON.stringify(context).replace(/"/g,'').replace(/\[/g,'').replace(/\]/g,'').replace(/,/g,', ');
+        }else{
+            return ""
+        } 
     });
     Handlebars.registerHelper('time_zone',function(context){
         temp = new Date(context + "Z");
         return temp.toLocaleDateString() + "  " + temp.toLocaleTimeString();
     });
     data= {"lat":47.50, "longitude":-93.46,"wsmax":60.1,"wsmin":0.2,"LAIMAX":5.3,"LAIMIN":0.3,"rdepth":150,"Rootmax":500,"Stemmax":1000,"SapR":1.0,"SapS":0.2,"SLA":40.0,"GLmax":39.2,"GRmax":20.25,"Gsmax":20.25,"stom_n":2,"a1":8,"Ds0":2000,"Vcmx0":80,"extkU":0.51,"xfang":0,"alpha":0.385,"Tau_Leaf":1.5,"Tau_Wood":40.0,"Tau_Root":0.8,"Tau_F":0.3,"Tau_C":5.86,"Tau_Micro":0.4,"Tau_SlowSOM":356.94,"Tau_Passive":2050.0,"gddonset":140.0,"Q10":2.0,"Rl0":30.2,"Rs0":7,"Rr0":29.0}
-    load_workflow(data);
+    $('#workflow_link').click(function(){setup_auth_workflow(); });
+    //load_workflow(data);
     //Load Inital Parameters
+    //$('#setModelParameter').click(function(){showInitParameters();});
+    //$('#runModel').click(function(){ submitWorkflow();});
+    load_frontpage();
+});//End of Document Ready
+function load_frontpage(){
+    $('#homedesc').empty();
+    workflow_template = Handlebars.templates['tmpl-ecopad-desc'];
+    $('#homedesc').append(workflow_template({}));
+}
+function setup_auth_workflow(){
+
+    set_auth(base_url,login_url);
+    load_task_history(user_task_url);
+    //Load Inital Parameters
+    load_workflow(data);
     $('#setModelParameter').click(function(){showInitParameters();});
     $('#runModel').click(function(){ submitWorkflow();});
-    //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
-    //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
-});//End of Document Ready
+
+}
 function submitWorkflow(){
     //model_type
     task_data = {"function": "ecopadq.tasks.tasks.teco_spruce_model","queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{"model_type":$("#task").prop('selectedIndex')},"tags":[]};
@@ -128,6 +146,7 @@ function set_auth(base_url,login_url){
         $('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     })
     .fail(function() {
+        activaTab('homedesc')
         var slink = login_url.concat(document.URL);
         window.location = slink
     });
