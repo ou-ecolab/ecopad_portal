@@ -151,6 +151,7 @@ function set_auth(base_url,login_url){
         data.csrftoken = getCookie('csrftoken')
         //source = $('#user-template').html()
         //user_template = Handlebars.compile(source);
+        $('#profile').empty()
         user_template = Handlebars.templates['tmpl-user']
         $('#profile').append(user_template(data))
         $('#user_form').hide()
