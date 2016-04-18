@@ -36,13 +36,25 @@ $(function() {
     load_frontpage();
 });//End of Document Ready
 function load_frontpage(){
+    //main description
     $('#homedesc').empty();
     workflow_template = Handlebars.templates['tmpl-ecopad-desc'];
     $('#homedesc').append(workflow_template({}));
+    //images
+    workflow_template = Handlebars.templates['tmpl-ecopad-plot-results'];
+    $('#front_viz').empty();
+    //er_forcast.png       foliage_forecast.png gpp_forecast.png     root_forecast.png    soil_forecast.png    wood_forecast.png
+    img_data ={'zero_label':'GPP Forecast','zero_url':'bower_components/img/gpp_forecast.png',
+                'one_label':'ER Forecast','one_url':'bower_components/img/er_forcast.png',
+                'two_label':'Foliage Forecast','two_url':'bower_components/img/foliage_forecast.png',
+                'three_label':'Wood Forecast','three_url':'bower_components/img/wood_forecast.png',
+                'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast.png',
+                'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast.png'}
+    $('#front_viz').append(workflow_template(img_data));
 }
 function setup_auth_workflow(){
-
     set_auth(base_url,login_url);
+    $('#user').show();
     load_task_history(user_task_url);
     //Load Inital Parameters
     load_workflow(data);
