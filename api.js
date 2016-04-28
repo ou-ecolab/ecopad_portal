@@ -75,7 +75,7 @@ function submitWorkflow(){
         fday=365;
         task_data.args = [$('#parameters').serializeObject(),fyear,fday ]
     }
-    url = "/api/queue/run/ecopadq." + task_name + "/.json"
+    url = "/api/queue/run/" + task_name + "/.json"
 
     $.postJSON(url,task_data ,function(data){
         work_flow_temp = Handlebars.templates['tmpl-workflow_reset'];
