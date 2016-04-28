@@ -12,7 +12,12 @@
                 </div>
 		<div class="form-group">
                     <label for="wsmax"> Maximum soil water (wsmax) </label>
-                    <input type="wsmax" name="wsmax" class="form-control input-sm" id="wsmax" value="{{ wsmax }}">
+                    <div class="checkbox-inline">
+                    <input type="wsmax"  name="wsmax" class="form-control input-sm" id="wsmax" value="{{ wsmax }}">
+                        <div class="checkbox-inline"><label><input type="checkbox" name="da_wsmax" value="0"> DA</label></div>
+                        <div class="checkbox-inline"><label>Min <input type="wsmax" name="min_wsmax" class="form-control input-sm" value="{{ min_wsmax }}"></label></div>
+                        <div class="checkbox-inline"><label>Max <input type="wsmax" name="max_wsmax" class="form-control input-sm" value="{{ max_wsmax }}"></label></div>
+                    </div>
                 </div>
 		<div class="form-group">
                     <label for="wsmin"> Minimum soil water (wsmin) </label>
