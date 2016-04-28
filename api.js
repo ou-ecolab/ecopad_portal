@@ -53,19 +53,29 @@ function load_frontpage(){
     $('#front_viz').append(workflow_template(img_data));
 }
 function setup_auth_workflow(){
-    set_auth(base_url,login_url);
+    /*set_auth(base_url,login_url);
     $('#user').show();
-    load_task_history(user_task_url);
+    load_task_history(user_task_url);*/
     //Load Inital Parameters
     load_workflow(data);
+
     $('#setModelParameter').click(function(){showInitParameters();});
     $('#runModel').click(function(){ submitWorkflow();});
 
 }
 function submitWorkflow(){
     //model_type
-    task_data = {"function": "ecopadq.tasks.tasks.teco_spruce_model","queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{"model_type":$("#task").prop('selectedIndex')},"tags":[]};
-    url = "/api/queue/run/ecopadq.tasks.tasks.teco_spruce_model/.json"
+    tasks= {"simulation":"ecopadq.tasks.tasks.teco_spruce_simulation","DA":"ecopadq.tasks.tasks.teco_spruce_data_assimilation",
+            "forcasting":"ecopadq.tasks.tasks.teco_spruce_simulation"}
+    mtype = $("#task").prop('selectedIndex')
+    task_name = tasks[$("#task").val()]
+    task_data = {"function": task_name,"queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{},"tags":[]};
+    if task_name=="ecopadq.tasks.tasks.teco_spruce_simulation"{
+        fyear=2023;
+        fday=365;
+        task_data.args = [$('#parameters').serializeObject(),fyear,fday ]
+    }
+    url = "/api/queue/run/ecopadq." + task_name + "/.json"
 
     $.postJSON(url,task_data ,function(data){
         work_flow_temp = Handlebars.templates['tmpl-workflow_reset'];
