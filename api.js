@@ -66,7 +66,7 @@ function setup_auth_workflow(){
 function submitWorkflow(){
     //model_type
     tasks= {"simulation":"ecopadq.tasks.tasks.teco_spruce_simulation","DA":"ecopadq.tasks.tasks.teco_spruce_data_assimilation",
-            "forcasting":"ecopadq.tasks.tasks.teco_spruce_simulation"}
+            "forcasting":"ecopadq.tasks.tasks.teco_spruce_forecast"}
     mtype = $("#task").prop('selectedIndex')
     task_name = tasks[$("#task").val()]
     task_data = {"function": task_name,"queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{},"tags":[]};
