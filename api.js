@@ -53,9 +53,9 @@ function load_frontpage(){
     $('#front_viz').append(workflow_template(img_data));
 }
 function setup_auth_workflow(){
-    /*set_auth(base_url,login_url);
+    set_auth(base_url,login_url);
     $('#user').show();
-    load_task_history(user_task_url);*/
+    load_task_history(user_task_url);
     //Load Inital Parameters
     load_workflow(data);
 
