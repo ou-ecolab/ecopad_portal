@@ -70,7 +70,7 @@ function submitWorkflow(){
     mtype = $("#task").prop('selectedIndex')
     task_name = tasks[$("#task").val()]
     task_data = {"function": task_name,"queue": "celery","args":[$('#parameters').serializeObject() ],"kwargs":{},"tags":[]};
-    if (task_name=="ecopadq.tasks.tasks.teco_spruce_simulation"){
+    if (task_name=="ecopadq.tasks.tasks.teco_spruce_forecast"){
         fyear=2023;
         fday=365;
         task_data.args = [$('#parameters').serializeObject(),fyear,fday ]
