@@ -79,7 +79,7 @@ function submitWorkflow(){
     task_name = tasks[$("#task").val()]
     params = $('#parameters').serializeObject()
     $.each(data,function(im,value){ 
-        if(im not in params) {
+        if (!(im in params)){
             params[im]="0";
         }
     })
