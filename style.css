@@ -66,4 +66,16 @@ a {
 #runModel {
     float:right;
 }
-
+.da_param {
+    white-space:nowrap;
+    border-bottom-style:solid;
+    border-bottom-width: thin;
+    border-bottom-color: #dce4ec;
+}
+.da_param_wd {
+    max-width:90px;
+}
+.da_param_lb {
+    vertical-align:sub;
+    font-weight:normal;
+}
