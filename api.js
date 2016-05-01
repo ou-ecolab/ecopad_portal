@@ -59,10 +59,17 @@ function setup_auth_workflow(){
     
     //Load Inital Parameters
     load_workflow(data);
-
+    $('#task').change(function(){task_change();});
     $('#setModelParameter').click(function(){showInitParameters();});
     $('#runModel').click(function(){ submitWorkflow();});
 
+}
+function task_change(){
+    if($('#task').val()=="DA"){
+        $('.da_param').show();
+    }else{
+        $('.da_param').hide();
+    }
 }
 function submitWorkflow(){
     //model_type
