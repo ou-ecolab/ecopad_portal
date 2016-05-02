@@ -24,22 +24,28 @@
                         </div>
                     </td>
                 </tr>
-                <tr id="init_data" class="hidden">
-                    <td>Initialize Data</td>
-                    <td colspan="2">
-                        <button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="fopener" type="button"><span class="ui-button-text">Simulation Weather Years</span></button><br><br>
+                <tr class="forecast">
+                    <td class="col-md-2">Forecast Date</td>
+                    <td >
+                        <div class="form-group input-sm col-sm-6">
+                            <label>Start: 2011/01/01  End Date:</label><input type="date" name="end_date" max="2024-12-31">
+                        </div>
                     </td>
                 </tr>
-                <tr style="display: none;" id="init_forcast" class="fdata">
-                      <td>Forecast  Data</td>
-                      <td colspan="2">
-                          <button style="width: 217px;" aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="fyr_opener" type="button"><span class="ui-button-text">Forcasting Weather Years</span></button>
-                      </td>
-                  </tr>
-                <tr id="mw" class="hidden">
-                    <td><input id="mod_weather" value="mod_weather" type="checkbox">&nbsp;Modify Weather</td>
-                    <td colspan="3"><input id="mod_w_txt" style="width: 90%; display: none;" value="{'T_air':[('add',0)]}" type="text">
-                    <button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="display: none;" id="mw_opener" type="button"><span class="ui-button-text">Help</span></button>
+                <tr class="forecast">
+                    <td class="col-md-2">Treatment</td>
+                    <td >
+                        <div class="form-group input-sm col-sm-6">
+                            <label>Temperature Adjustment (0-9 degree celsius): </label><input type="number" name="temp" min="0.0" max="9.0" step="0.1" value="0.0">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="forecast">
+                    <td class="col-md-2">Treatment</td>
+                    <td >
+                        <div class="form-group input-sm col-sm-6">
+                            <label>CO2 Adjustment (380-900 ppm): </label><input type="number" name="co2" min="380.0" max="900.0" step="0.1" value="380.0">
+                        </div>
                     </td>
                 </tr>
                 </tbody>
