@@ -112,9 +112,22 @@ function submitWorkflow(){
     })
     task_data = {"function": task_name,"queue": "celery","args":[params],"kwargs":{},"tags":[]};
     if (task_name=="ecopadq.tasks.tasks.teco_spruce_forecast"){
-        fyear=2023;
-        fday=365;
+        nd = new Date($('#forecastdate').val());
+        fyear=nd.getFullYear();
+        console.log(fyear)
+        start = new Date(fyear, 0, 0);
+        diff = nd-start;
+        oneDay = 1000 * 60 * 60 * 24;
+        fday = Math.ceil(diff/oneDay);
+        console.log(fday);
+        temp_treatment=$('#forecasttemp').val();
+        co2_treatment =$('#forecastco2').val();
+        console.log(temp_treatment);
+        console.log(co2_treatment);
+        //fyear=2023;
+        //fday=365;
         task_data.args = [params,fyear,fday ]
+        task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
     }
     url = "/api/queue/run/" + task_name + "/.json"
 
