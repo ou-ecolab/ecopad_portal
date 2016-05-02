@@ -40,19 +40,19 @@ function load_frontpage(){
     //main description
     $('#homedesc').empty();
     workflow_template = Handlebars.templates['tmpl-ecopad-desc'];
-    desc_data ={"forcing_uncertainty_label":"Forcing Uncertainty","forcing_uncertainty_url":'bower_components/img/forcing_uncertainty.gif',
-                "add_data_label":"Added Data","add_data_url":'bower_components/img/add_data.gif'}
+    desc_data ={"forcing_uncertainty_label":"Forcing Uncertainty","forcing_uncertainty_url":'bower_components/img/forcing_uncertainty_stat.gif',
+                "add_data_label":"Added Data","add_data_url":'bower_components/img/add_data_stat.gif'}
     $('#homedesc').append(workflow_template(desc_data));
     //images
     workflow_template = Handlebars.templates['tmpl-ecopad-plot-results'];
     $('#front_viz').empty();
     //er_forcast.png       foliage_forecast.png gpp_forecast.png     root_forecast.png    soil_forecast.png    wood_forecast.png
-    img_data ={'zero_label':'GPP Forecast','zero_url':'bower_components/img/gpp_forecast.gif',
-                'one_label':'ER Forecast','one_url':'bower_components/img/er_forecast.gif',
-                'two_label':'Foliage Forecast','two_url':'bower_components/img/foliage_forecast.gif',
-                'three_label':'Wood Forecast','three_url':'bower_components/img/wood_forecast.gif',
-                'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast.gif',
-                'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast.gif'}
+    img_data ={'zero_label':'GPP Forecast','zero_url':'bower_components/img/gpp_forecast_stat.gif',
+                'one_label':'ER Forecast','one_url':'bower_components/img/er_forecast_stat.gif',
+                'two_label':'Foliage Forecast','two_url':'bower_components/img/foliage_forecast_stat.gif',
+                'three_label':'Wood Forecast','three_url':'bower_components/img/wood_forecast_stat.gif',
+                'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast_stat.gif',
+                'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast_stat.gif'}
     $('#front_viz').append(workflow_template(img_data));
     /*$('#toggle').click(function(){
         var stp_animation=false;
