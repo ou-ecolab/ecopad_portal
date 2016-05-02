@@ -82,6 +82,12 @@ a {
 .input-ec {
     margin-left: 15px;
     margin-bottom: 10px;
+    float:right;
+}
+.input-ec1 {
+    float: right;
+    width: 110px;
+    clear: right;
 }
 .tr-ec {
     border-bottom: #ccc;
