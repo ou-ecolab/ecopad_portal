@@ -71,12 +71,15 @@ function task_change(){
     if ($('#task').val()=="DA"){
         $('.da_param').show();
         $('.forecast').hide();
+        $('#setModelParameter').html("Set DA Initial Parameters")
     }else if ( $('#task').val()=="forcasting") {
         $('.da_param').hide();
         $('.forecast').show();
+        $('#setModelParameter').html("Set Initial Parameters")
     }else{
         $('.da_param').hide();
         $('.forecast').hide();
+        $('#setModelParameter').html("Set Initial Parameters")
     }
 }
 function submitWorkflow(){
