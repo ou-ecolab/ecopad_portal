@@ -79,3 +79,11 @@ a {
     vertical-align:sub;
     font-weight:normal;
 }
+.input-ec {
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+.tr-ec {
+    border-bottom: #ccc;
+    border-bottom-style: groove;
+}
