@@ -54,7 +54,7 @@ function load_frontpage(){
                 'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast.gif',
                 'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast.gif'}
     $('#front_viz').append(workflow_template(img_data));
-    $('#toggle').click(function(){
+    /*$('#toggle').click(function(){
         var stp_animation=false;
         if ($(".eco-img")[0].src.endsWith("_stat.gif")){
             stp_animation= true;
@@ -67,7 +67,7 @@ function load_frontpage(){
                 $(e).attr('src',e.src.replace('.gif', '_stat.gif'));
             } 
         });
-    });
+    });*/
 }
 function setup_auth_workflow(){
     set_auth(base_url,login_url);
