@@ -40,23 +40,39 @@ function load_frontpage(){
     //main description
     $('#homedesc').empty();
     workflow_template = Handlebars.templates['tmpl-ecopad-desc'];
-    $('#homedesc').append(workflow_template({}));
+    desc_data ={"forcing_uncertainty_label":"Forcing Uncertainty","forcing_uncertainty_url":'bower_components/img/forcing_uncertainty.gif',
+                "add_data_label":"Added Data","add_data_url":'bower_components/img/add_data.gif'}
+    $('#homedesc').append(workflow_template(desc_data));
     //images
     workflow_template = Handlebars.templates['tmpl-ecopad-plot-results'];
     $('#front_viz').empty();
     //er_forcast.png       foliage_forecast.png gpp_forecast.png     root_forecast.png    soil_forecast.png    wood_forecast.png
-    img_data ={'zero_label':'GPP Forecast','zero_url':'bower_components/img/gpp_forecast.png',
-                'one_label':'ER Forecast','one_url':'bower_components/img/er_forcast.png',
-                'two_label':'Foliage Forecast','two_url':'bower_components/img/foliage_forecast.png',
-                'three_label':'Wood Forecast','three_url':'bower_components/img/wood_forecast.png',
-                'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast.png',
-                'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast.png'}
+    img_data ={'zero_label':'GPP Forecast','zero_url':'bower_components/img/gpp_forecast.gif',
+                'one_label':'ER Forecast','one_url':'bower_components/img/er_forecast.gif',
+                'two_label':'Foliage Forecast','two_url':'bower_components/img/foliage_forecast.gif',
+                'three_label':'Wood Forecast','three_url':'bower_components/img/wood_forecast.gif',
+                'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast.gif',
+                'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast.gif'}
     $('#front_viz').append(workflow_template(img_data));
+    $('#toggle').click(function(){
+        var stp_animation=false;
+        if ($(".eco-img")[0].src.endsWith("_stat.gif")){
+            stp_animation= true;
+        }
+        $(".eco-img").each(function(itm,e){ 
+            if ( stp_animation ) { 
+                location.reload(); 
+                //$(e).attr('src',e.src.replace('_stat.gif', '.gif')); 
+            }else { 
+                $(e).attr('src',e.src.replace('.gif', '_stat.gif'));
+            } 
+        });
+    });
 }
 function setup_auth_workflow(){
-    set_auth(base_url,login_url);
-    $('#user').show();
-    load_task_history(user_task_url);
+    //set_auth(base_url,login_url);
+    //$('#user').show();
+    //load_task_history(user_task_url);
     
     //Load Inital Parameters
     load_workflow(data);
