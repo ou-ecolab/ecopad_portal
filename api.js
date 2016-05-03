@@ -54,20 +54,6 @@ function load_frontpage(){
                 'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast_stat.gif',
                 'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast_stat.gif'}
     $('#front_viz').append(workflow_template(img_data));
-    /*$('#toggle').click(function(){
-        var stp_animation=false;
-        if ($(".eco-img")[0].src.endsWith("_stat.gif")){
-            stp_animation= true;
-        }
-        $(".eco-img").each(function(itm,e){ 
-            if ( stp_animation ) { 
-                location.reload(); 
-                //$(e).attr('src',e.src.replace('_stat.gif', '.gif')); 
-            }else { 
-                $(e).attr('src',e.src.replace('.gif', '_stat.gif'));
-            } 
-        });
-    });*/
 }
 function setup_auth_workflow(){
     set_auth(base_url,login_url);
@@ -102,14 +88,11 @@ function submitWorkflow(){
     //model_type
     tasks= {"simulation":"ecopadq.tasks.tasks.teco_spruce_simulation","DA":"ecopadq.tasks.tasks.teco_spruce_data_assimilation",
             "forcasting":"ecopadq.tasks.tasks.teco_spruce_forecast"}
-    mtype = $("#task").prop('selectedIndex')
+    //mtype = $("#task").prop('selectedIndex')
     task_name = tasks[$("#task").val()]
     params = $('#parameters').serializeObject()
-    $.each(data,function(im,value){ 
-        if (!(im in params)){
-            params[im]="0";
-        }
-    })
+    clean_params(params,$("#task").val());
+    //setup task_data
     task_data = {"function": task_name,"queue": "celery","args":[params],"kwargs":{},"tags":[]};
     if (task_name=="ecopadq.tasks.tasks.teco_spruce_forecast"){
         nd = new Date($('#forecastdate').val());
@@ -143,6 +126,21 @@ function submitWorkflow(){
     });
 
 }
+function clean_params(params,task_type){
+    $.each(data,function(im,value){
+        if (!(im in params)){
+            params[im]="0";
+        }
+    });
+    if (!(task_type=="DA")){
+        $.each(params,function(im,value){
+            if (im.startsWith("da_") || im.startsWith("min_") || im.startsWith("max_")){
+                delete params[im];
+            };
+        });
+    };
+};
+
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({
         'type': 'POST',
