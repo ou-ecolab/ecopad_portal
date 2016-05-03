@@ -79,18 +79,34 @@ function setup_auth_workflow(){
     $('#runModel').click(function(){ submitWorkflow();});
     $('.da_param').hide();
     $('.forecast').hide();
+    //Error Checking for DA Parmeters
     $('.da_chkbx').click(function(event){
-        event.preventDefault();
-        event.stopPropagation();
+        da_num=0
         da_num = check_da_number()
         if ($(this).is(':checked')){
-            return true;
-        }else{
-            if (da_num>=17){
+            console.log(da_num)
+            if (da_num>=19){
+                event.preventDefault();
+                event.stopPropagation();
                 alert("18 is the maximun number of DA Parameters. Please uncheck one parameter to allow for addition.")
                 return false
             }else{
-                return true
+                $(this).attr('checked',true);
+                $(this).val("1");
+                return true;
+            }
+        }else{
+            console.log(da_num)
+            if (da_num==0){
+                event.preventDefault();
+                event.stopPropagation();
+                alert("Must have at least one DA Parameter.")
+                return false
+
+            }else{
+                $(this).attr('checked',false);
+                $(this).val("0");
+                return true;
             }
         } 
     });
@@ -123,19 +139,50 @@ function submitWorkflow(){
     task_data = {"function": task_name,"queue": "celery","args":[params],"kwargs":{},"tags":[]};
     if (task_name=="ecopadq.tasks.tasks.teco_spruce_forecast"){
         nd = new Date($('#forecastdate').val());
+        if(isNaN(nd)){
+            alert("Please check Forecast End Date. Format YYYY-mm-dd")
+            return;
+        }
         fyear=nd.getFullYear();
+        if (fyear>2024){
+            alert("Please correct Forecast End Date. Maximum Date 2024-12-31")
+            return;
+        }
         console.log(fyear)
         start = new Date(fyear, 0, 0);
         diff = nd-start;
         oneDay = 1000 * 60 * 60 * 24;
         fday = Math.ceil(diff/oneDay);
+        if (fday>=367){
+            alert("Please correct Forecast End Date. Maximum Date 2024-12-31")
+            return;
+        }
         console.log(fday);
+        //Warming Treatment
         temp_treatment=$('#forecasttemp').val();
+        try{
+            num=parseFloat(temp_treatment)
+            if( num<0.0 || num>9.0){
+                alert("Warming Parameter must be between 0-9 degree celsius")
+                return;
+            }
+        }catch(e){
+            alert("Warming Parameter must be a number!")
+            return;
+        }
+        
+        //Co2 Treatment
         co2_treatment =$('#forecastco2').val();
-        console.log(temp_treatment);
-        console.log(co2_treatment);
-        //fyear=2023;
-        //fday=365;
+        try{
+            num=parseFloat(co2_treatment)
+            if( num<380.0 || num>900.0){
+                alert("CO2 Adjustment Parameter must be between 380-900 degree celsius")
+                return;
+            }
+        }catch(e){
+            alert("CO2 Adjustment Parameter must be a number!")
+            return;
+        }
         task_data.args = [params,fyear,fday ]
         task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
     }
@@ -152,6 +199,9 @@ function submitWorkflow(){
         load_task_history(user_task_url);
     });
 
+}
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
 function check_da_number(){
     da_num=0
