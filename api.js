@@ -51,6 +51,21 @@ function load_frontpage(){
                 'four_label':'Root Forecast','four_url':'bower_components/img/root_forecast.gif',
                 'five_label':'Soil Forecast','five_url':'bower_components/img/soil_forecast.gif'}
     $('#front_viz').append(workflow_template(img_data));
+    //toggle gif and stat
+    $('#toggle').click(function(){
+        var stp_animation=false;
+        if ($(".eco-img")[0].src.endsWith("_stat.gif")){
+            stp_animation= true;
+        }
+        $(".eco-img").each(function(itm,e){ 
+            if ( stp_animation ) { 
+                location.reload(); 
+                //$(e).attr('src',e.src.replace('_stat.gif', '.gif')); 
+            }else { 
+                $(e).attr('src',e.src.replace('.gif', '_stat.gif'));
+            } 
+        });
+    });
 }
 function setup_auth_workflow(){
     set_auth(base_url,login_url);
@@ -64,6 +79,21 @@ function setup_auth_workflow(){
     $('#runModel').click(function(){ submitWorkflow();});
     $('.da_param').hide();
     $('.forecast').hide();
+    $('.da_chkbx').click(function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        da_num = check_da_number()
+        if ($(this).is(':checked')){
+            return true;
+        }else{
+            if (da_num>=17){
+                alert("18 is the maximun number of DA Parameters. Please uncheck one parameter to allow for addition.")
+                return false
+            }else{
+                return true
+            }
+        } 
+    });
 
 }
 function task_change(){
@@ -122,6 +152,11 @@ function submitWorkflow(){
         load_task_history(user_task_url);
     });
 
+}
+function check_da_number(){
+    da_num=0
+    $.each($('.da_chkbx'),function(idx,ob){ if($(ob).is(':checkbox')){if ($(ob).is(':checked')){da_num +=1; }}})
+    return da_num
 }
 function clean_params(params,task_type){
     $.each(data,function(im,value){
