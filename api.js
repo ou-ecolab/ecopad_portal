@@ -74,9 +74,9 @@ function load_frontpage(){
     });
 }
 function setup_auth_workflow(){
-    //set_auth(base_url,login_url);
-    //$('#user').show();
-    //load_task_history(user_task_url);
+    set_auth(base_url,login_url);
+    $('#user').show();
+    load_task_history(user_task_url);
     
     //Load Inital Parameters
     load_workflow(data);
