@@ -198,6 +198,12 @@ function submitWorkflow(){
             alert("CO2 Adjustment Parameter must be a number!")
             return;
         }
+        if (temp_treatment.indexOf('.')<0){
+            temp_treatment = temp_treatment + '.0'
+        }
+        if (co2_treatment.indexOf('.')<0){
+            co2_treatment = co2_treatment + '.0'
+        }
         task_data.args = [params,fyear,fday ]
         task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
     }
