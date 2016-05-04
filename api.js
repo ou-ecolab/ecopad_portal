@@ -131,13 +131,21 @@ function submitWorkflow(){
     //model_type
     tasks= {"simulation":"ecopadq.tasks.tasks.teco_spruce_simulation","DA":"ecopadq.tasks.tasks.teco_spruce_data_assimilation",
             "forcasting":"ecopadq.tasks.tasks.teco_spruce_forecast"}
-    //mtype = $("#task").prop('selectedIndex')
+    //mtype = $("#task").prop('selectedIndex'
+    task_pieces = task_name.split('.')
+    tags=
     task_name = tasks[$("#task").val()]
+    task_pieces = task_name.split('.')
+    tags= [task_pieces[task_pieces.length-1]]
     params = $('#parameters').serializeObject()
     clean_params(params,$("#task").val());
     //setup task_data
     task_data = {"function": task_name,"queue": "celery","args":[params],"kwargs":{},"tags":[]};
+    if (task_name=="ecopadq.tasks.tasks.teco_spruce_data_assimilation"){
+        $.each($('.da_chkbx'),function(idx,ob){ if($(ob).is(':checkbox')){if ($(ob).is(':checked')){tags.push($(ob).attr('name').substring(3));}}})
+    }
     if (task_name=="ecopadq.tasks.tasks.teco_spruce_forecast"){
+        tags.push("Forecast_End_Date_" + $('#forecastdate').val())
         nd = new Date($('#forecastdate').val());
         if(isNaN(nd)){
             alert("Please check Forecast End Date. Format YYYY-mm-dd")
@@ -160,6 +168,7 @@ function submitWorkflow(){
         console.log(fday);
         //Warming Treatment
         temp_treatment=$('#forecasttemp').val();
+        tags.push("Warming " + $('#forecasttemp').val())
         try{
             num=parseFloat(temp_treatment)
             if( num<0.0 || num>9.0){
@@ -173,6 +182,7 @@ function submitWorkflow(){
         
         //Co2 Treatment
         co2_treatment =$('#forecastco2').val();
+        tags.push("CO2 Adjustment " + co2_treatment)
         try{
             num=parseFloat(co2_treatment)
             if( num<380.0 || num>900.0){
@@ -186,6 +196,7 @@ function submitWorkflow(){
         task_data.args = [params,fyear,fday ]
         task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
     }
+    task_data.tags=tags
     url = "/api/queue/run/" + task_name + "/.json"
 
     $.postJSON(url,task_data ,function(data){
