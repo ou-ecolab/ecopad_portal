@@ -132,8 +132,6 @@ function submitWorkflow(){
     tasks= {"simulation":"ecopadq.tasks.tasks.teco_spruce_simulation","DA":"ecopadq.tasks.tasks.teco_spruce_data_assimilation",
             "forcasting":"ecopadq.tasks.tasks.teco_spruce_forecast"}
     //mtype = $("#task").prop('selectedIndex'
-    task_pieces = task_name.split('.')
-    tags=
     task_name = tasks[$("#task").val()]
     task_pieces = task_name.split('.')
     tags= [task_pieces[task_pieces.length-1]]
