@@ -133,17 +133,18 @@ function submitWorkflow(){
             "forcasting":"ecopadq.tasks.tasks.teco_spruce_forecast"}
     //mtype = $("#task").prop('selectedIndex'
     task_name = tasks[$("#task").val()]
-    task_pieces = task_name.split('.')
-    tags= [task_pieces[task_pieces.length-1]]
+    tags= ["TECO Spruce Simulation"]
     params = $('#parameters').serializeObject()
     clean_params(params,$("#task").val());
     //setup task_data
     task_data = {"function": task_name,"queue": "celery","args":[params],"kwargs":{},"tags":[]};
     if (task_name=="ecopadq.tasks.tasks.teco_spruce_data_assimilation"){
+        tags=["TECO Spruce Data Assimilation"]
         $.each($('.da_chkbx'),function(idx,ob){ if($(ob).is(':checkbox')){if ($(ob).is(':checked')){tags.push($(ob).attr('name').substring(3));}}})
     }
     if (task_name=="ecopadq.tasks.tasks.teco_spruce_forecast"){
-        tags.push("Forecast_End_Date_" + $('#forecastdate').val())
+        tags=["TECO Spruce Forecast"]
+        tags.push("End_Date " + $('#forecastdate').val())
         nd = new Date($('#forecastdate').val());
         if(isNaN(nd)){
             alert("Please check Forecast End Date. Format YYYY-mm-dd")
