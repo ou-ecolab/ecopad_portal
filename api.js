@@ -38,6 +38,7 @@ $(function() {
             $(e).attr('src',e.src.replace('.gif', '_stat.gif'));
         });
         }  , 60000 );
+    $('#resetDA').click(function(){forecast_task_id="default";$('#visual_daf').val("Default Data Assimilation");});
 });//End of Document Ready
 
 function load_frontpage(){
