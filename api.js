@@ -208,7 +208,8 @@ function submitWorkflow(){
             co2_treatment = co2_treatment + '.0'
         }
         task_data.args = [params,fyear,fday ]
-        task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment,"da_task_id":forecast_task_id}
+        //"da_task_id":forecast_task_id
+        task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
     }
     task_data.tags=tags
     url = "/api/queue/run/" + task_name + "/.json"
