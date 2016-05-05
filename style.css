@@ -93,3 +93,6 @@ a {
 .tr-ec {
     border-bottom: #ccc;
 }
+.pre-table{
+    word-wrap: break-word;
+}
