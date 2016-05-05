@@ -389,9 +389,10 @@ function setTaskDisplay(data){
 function showdaResult(url,id){
     $.getJSON(url + ".json" , function(data){
         json_data = JSON.stringify(data,null, 4);
-        $("#"+ id).html(json_data);
-        $("#" + id).urlize();
-        $("." + id).show();
+        //$("#"+ id).html(json_data);
+        //$("#" + id).urlize();
+        //$("." + id).show();
+        alert(json_data);
     });
 }
 function showResult(url){
