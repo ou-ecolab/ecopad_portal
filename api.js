@@ -254,6 +254,7 @@ function clean_params(params,task_type){
 };
 function showDA_tasks(){
      $.getJSON(da_usertasks_url, function(data){
+        $('#da_result_tbody').empty();
         tr_template = Handlebars.templates['tmpl-da-tr']
         $.each(data.results, function(i, item) {
             load_success_da_only(item,tr_template);
