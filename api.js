@@ -193,7 +193,7 @@ function submitWorkflow(){
         try{
             num=parseFloat(co2_treatment)
             if( num<380.0 || num>900.0){
-                alert("CO2 Adjustment Parameter must be between 380-900 degree celsius")
+                alert("CO2 Adjustment Parameter must be between 380-900 ppm")
                 return;
             }
         }catch(e){
