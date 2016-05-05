@@ -249,18 +249,20 @@ function clean_params(params,task_type){
 };
 function showDA_tasks(){
      $.getJSON(da_usertasks_url, function(data){
-        //setTaskDisplay(data);
-    //source = $('#tr-template').html();
-    //tr_template = Handlebars.compile(source);
-    tr_template = Handlebars.templates['tmpl-da-tr']
-    $('#da_result_tbody').html("")//clear table
-    $.each(data.results, function(i, item) {
-        temp=item.task_name.split('.')
-        item['task_name']= temp[temp.length-1]
-        item.timestamp = item.timestamp; // .substring(0,19).replace('T',' ')
-        $('#da_result_tbody').append(tr_template(item))
+        tr_template = Handlebars.templates['tmpl-da-tr']
+        $.each(data.results, function(i, item) {
+            load_success_da_only(item,tr_template);
+        });
     });
-    $('.tr-result').hide();
+}
+function load_success_da_only(item,tmpl){
+    $.getJSON(item.result,function(data){
+        if (data.result.status =="SUCCESS"){
+            temp=item.task_name.split('.')
+            item['task_name']= temp[temp.length-1]
+            item.timestamp = item.timestamp;
+            $('#da_result_tbody').append(tmpl(item))
+        }
     });
 }
 
