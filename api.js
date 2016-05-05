@@ -257,7 +257,7 @@ function showDA_tasks(){
 }
 function load_success_da_only(item,tmpl){
     $.getJSON(item.result,function(data){
-        if (data.result.status =="SUCCESS"){
+        if (data.result.status =="SUCCESS" && item.tags.length>0){
             temp=item.task_name.split('.')
             item['task_name']= temp[temp.length-1]
             item.timestamp = item.timestamp;
