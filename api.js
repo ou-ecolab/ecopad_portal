@@ -262,7 +262,7 @@ function load_success_da_only(item,tmpl){
             item['task_name']= temp[temp.length-1]
             item.timestamp = item.timestamp;
             $('#da_result_tbody').append(tmpl(item))
-            $('.select-da-id').click(function(ob){setDAid(ob);});
+            $('.select-da-id').click(function(ob){setDAid($(this));});
         }
     });
 }
