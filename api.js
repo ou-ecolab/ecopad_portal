@@ -388,7 +388,8 @@ function setTaskDisplay(data){
 }
 function showdaResult(url,id){
     $.getJSON(url + ".json" , function(data){
-        json_data = JSON.stringify(data,null, 4);
+        data-res = {"args":data.args,"result":data.result}
+        json_data = JSON.stringify(data-res,null, 4);
         //$("#"+ id).html(json_data);
         //$("#" + id).urlize();
         //$("." + id).show();
