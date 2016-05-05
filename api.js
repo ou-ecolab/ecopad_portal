@@ -262,10 +262,13 @@ function load_success_da_only(item,tmpl){
             item['task_name']= temp[temp.length-1]
             item.timestamp = item.timestamp;
             $('#da_result_tbody').append(tmpl(item))
+            $('.select-da-id').click(function(ob){setDAid(ob);});
         }
     });
 }
-
+function setDAid(ob){
+    console.log($(ob).val());
+}
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({
         'type': 'POST',
