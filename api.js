@@ -260,6 +260,7 @@ function showDA_tasks(){
         item.timestamp = item.timestamp; // .substring(0,19).replace('T',' ')
         $('#da_result_tbody').append(tr_template(item))
     });
+    $('.tr-result').hide();
     });
 }
 
