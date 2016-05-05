@@ -64,7 +64,8 @@ a {
    margin: 0 0 0 20px;
 }
 #runModel {
-    float:right;
+    margin:20px;
+    width:80%;
 }
 .da_param {
     white-space:nowrap;

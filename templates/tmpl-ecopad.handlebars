@@ -3,7 +3,7 @@
                 <tr>
                     <td class="col-md-2">Task <br><br> Model</td>
                     <td > 
-                        <div class="form-group input-sm col-sm-6">
+                        <div class="form-group input-sm ">
                         <select id="task" class="form-control input-sm">
                             <option value="simulation">Simulation</option>
                             <option value="DA">Data Assimilation (DA)</option>
@@ -14,20 +14,31 @@
                         </select>
                         </div>
                     </td>
+                    <td rowspan="5" class="col-sm-3">
+                    <button id="runModel" class="btn btn-info-outline btn-success" type="button" >Run Model</button>
+                    </td>
                 </tr>
                 <tr class="tr-ec">
                     <td>Initial Parameters</td>
-                    <td colspan="2" class="form-group">
-                        <div class="col-sm-6">
-                          <button id="setModelParameter" class="btn btn-primary-outline btn-info" type="button" >Set Initial Parameters</button>
-                          <button id="runModel" class="btn btn-info-outline btn-info" type="button" >Run Model</button>
+                    <td colspan="1" class="form-group">
+                        <div >
+                          <button id="setModelParameter" class="btn btn-primary-outline btn-info pull-right" type="button" >Set Initial Parameters</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="forecast" style="height:100px">
+                    <td class="col-md-2">Forecast Data Assimulation</td>
+                    <td >
+                        <div class="form-group input-sm ">
+                            <input id="visual_daf" class="form-control input-sm" value="Default Task File" style="float:right " readonly="" type="text">
+                            <button id="selectDA" class="btn btn-primary-outline btn-info" type="button" style="float:right;margin-top:5px">Select Forecast Task File</button>
                         </div>
                     </td>
                 </tr>
                 <tr class="forecast " style="height:80px">
                     <td class="col-md-2">Forecast Date</td>
                     <td >
-                        <div class="form-group input-sm col-sm-6">
+                        <div class="form-group input-sm ">
                             <div class="form-inline">
                             <label>Start: 2011-01-01 </label><label style="margin-left:20px"> End Date: </label><input id="forecastdate" class="form-control input-sm input-ec" type="date" name="end_date" max="2024-12-31" value="2024-12-31"></div>
                         </div>
@@ -36,7 +47,7 @@
                 <tr class="form-stacked forecast tr-ec" style="height:140px">
                     <td class="col-md-2">Forecast Treatment</td>
                     <td >
-                    <div class="form-group input-sm col-sm-6">
+                    <div class="form-group input-sm ">
                         <div class="form-inline">
                          <label>Warming (0-9 degree celsius): </label><input id="forecasttemp" class="form-control input-sm input-ec inputec" type="number" name="temp" min="0.0" max="9.0" step="0.1" value="0.0">
                         </div>

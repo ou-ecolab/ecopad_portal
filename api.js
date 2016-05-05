@@ -1,15 +1,16 @@
 $(function() {
+    //activate home page and hide user information
     activaTab('homedesc');
     $('#user').hide();
     //Customize by setting base_url to cybercom/api docker application
     base_url = "/api";
+    da_usertasks_url = base_url + "/queue/usertasks/.json?page_size=1000&taskname=ecopadq.tasks.tasks.teco_spruce_data_assimilation"
     //No other alterations is need to get the standard applicaiton running!
     login_url = base_url + "/api-auth/login/?next=";
     logout_url = base_url + "/api-auth/logout/?next=";
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
     user_url = base_url + "/user/?format=json";
     prevlink=null;nextlink=null;
-    //set_auth(base_url,login_url);
     
     $("#aprofile").click(function(){activaTab('profile')})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
@@ -27,7 +28,7 @@ $(function() {
         temp = new Date(context + "Z");
         return temp.toLocaleDateString() + "  " + temp.toLocaleTimeString();
     });
-    //Defaulti Initial Parameters values 
+    //Default EcoPAD  Initial Parameters values 
     data= {"lat":47.50, "longitude":-93.46,"wsmax":60.1,"wsmin":0.2,"LAIMAX":5.3,"LAIMIN":0.3,"rdepth":150,"Rootmax":500,"Stemmax":1000,"SapR":1.0,"SapS":0.2,"SLA":40.0,"GLmax":39.2,"GRmax":20.25,"Gsmax":20.25,"stom_n":2,"a1":8,"Ds0":2000,"Vcmx0":80,"extkU":0.51,"xfang":0,"alpha":0.385,"Tau_Leaf":1.5,"Tau_Wood":40.0,"Tau_Root":0.8,"Tau_F":0.3,"Tau_C":5.86,"Tau_Micro":0.4,"Tau_SlowSOM":356.94,"Tau_Passive":2050.0,"gddonset":140.0,"Q10":2.0,"Rl0":30.2,"Rs0":7,"Rr0":29.0,"da_wsmax":0,"da_wsmin":0,"da_LAIMAX":0,"da_LAIMIN":0,"da_rdepth":0,"da_Rootmax":0,"da_Stemmax":0,"da_SapR":0,"da_SapS":0,"da_SLA":1,"da_GLmax":1,"da_GRmax":1,"da_Gsmax":1,"da_stom_n":0,"da_a1":0,"da_Ds0":0,"da_Vcmx0":1,"da_extkU":0,"da_xfang":0,"da_alpha":0,"da_Tau_Leaf":1,"da_Tau_Wood":1,"da_Tau_Root":1,"da_Tau_F":1,"da_Tau_C":1,"da_Tau_Micro":1,"da_Tau_SlowSOM":1,"da_Tau_Passive":1,"da_gddonset":1,"da_Q10":1,"da_Rl0":1,"da_Rs0":1,"da_Rr0":1,"min_wsmax":50.0,"min_wsmin":0.2,"min_LAIMAX":4.0,"min_LAIMIN":0.3,"min_rdepth":100,"min_Rootmax":400,"min_Stemmax":500,"min_SapR":1,"min_SapS":0.2,"min_SLA":10.0,"min_GLmax":10.0,"min_GRmax":10.,"min_Gsmax":10.,"min_stom_n":2,"min_a1":8,"min_Ds0":2000,"min_Vcmx0":14,"min_extkU":0.51,"min_xfang":0,"min_alpha":0.385,"min_Tau_Leaf":0.5,"min_Tau_Wood":5.0,"min_Tau_Root":0.3,"min_Tau_F":0.1,"min_Tau_C":1.0,"min_Tau_Micro":0.05,"min_Tau_SlowSOM":5.0,"min_Tau_Passive":500.0,"min_gddonset":100.0,"min_Q10":1.0,"min_Rl0":10.0,"min_Rs0":4.5,"min_Rr0":10.0,"max_wsmax":60.0,"max_wsmin":0.2,"max_LAIMAX":4.0,"max_LAIMIN":0.3,"max_rdepth":100,"max_Rootmax":500,"max_Stemmax":1000,"max_SapR":1,"max_SapS":0.2,"max_SLA":200.0,"max_GLmax":50.0,"max_GRmax":30.0,"max_Gsmax":30.0,"max_stom_n":2,"max_a1":8,"max_Ds0":2000,"max_Vcmx0":180,"max_extkU":0.51,"max_xfang":0,"max_alpha":0.385,"max_Tau_Leaf":3.0,"max_Tau_Wood":800.0,"max_Tau_Root":2.0,"max_Tau_F":0.5,"max_Tau_C":20.0,"max_Tau_Micro":0.5,"max_Tau_SlowSOM":1000.0,"max_Tau_Passive":4000.0,"max_gddonset":160.0,"max_Q10":4.0,"max_Rl0":45.0,"max_Rs0":10.5,"max_Rr0":45.0}
     $('#workflow_link').click(function(){setup_auth_workflow(); });
     load_frontpage();
@@ -77,7 +78,7 @@ function setup_auth_workflow(){
     set_auth(base_url,login_url);
     $('#user').show();
     load_task_history(user_task_url);
-    
+    showDA_tasks(); 
     //Load Inital Parameters
     load_workflow(data);
     $('#task').change(function(){task_change();});
@@ -116,6 +117,7 @@ function setup_auth_workflow(){
             }
         } 
     });
+    $('#selectDA').click(function(){$('#myDAModal').modal('show');})
 
 }
 function task_change(){
@@ -244,6 +246,21 @@ function clean_params(params,task_type){
         });
     };
 };
+function showDA_tasks(){
+     $.getJSON(da_usertasks_url, function(data){
+        //setTaskDisplay(data);
+    //source = $('#tr-template').html();
+    //tr_template = Handlebars.compile(source);
+    tr_template = Handlebars.templates['tmpl-da-tr']
+    $('#da_result_tbody').html("")//clear table
+    $.each(data.results, function(i, item) {
+        temp=item.task_name.split('.')
+        item['task_name']= temp[temp.length-1]
+        item.timestamp = item.timestamp; // .substring(0,19).replace('T',' ')
+        $('#da_result_tbody').append(tr_template(item))
+    });
+    });
+}
 
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({

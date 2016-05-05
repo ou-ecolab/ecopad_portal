@@ -110,12 +110,12 @@
 </div>
 <!-- Task Result End Modal -->
 <!-- Initial Parameters  Modal -->
-<div class="modal fade" id="myParameterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myParameterModal" tabindex="-1" role="dialog" aria-labelledby="myPModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" style="width:80%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" id="myModalLabel">Initial Parameters</h3>
+        <h3 class="modal-title" id="myPModalLabel">Initial Parameters</h3>
       </div>
       <div class="modal-body">
         <div id="myParameterModalbody"></div>
@@ -125,8 +125,36 @@
     </div>
   </div>
 </div>
-<!-- Task Result End Modal -->
-
+<!-- Task Parameter Modal -->
+<!-- Initial DA selection Modal -->
+<div class="modal fade" id="myDAModal" tabindex="-1" role="dialog" aria-labelledby="myDAModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myDAModalLabel">Data Assimilation Parameter Estimate File Selection</h3>
+      </div>
+      <div class="modal-body">
+        <div id="myDAModalbody">
+            <table class="table table-striped table-bordered table-condensed table-hover" id='da_resulttable'>
+              <tr>
+                  <th>Select</th
+                  <th>Task Name</th>
+                  <th>Timestamp</th>
+                  <th>Metadata Tags</th>
+                  <!--<th>Result</th>-->
+              </tr>
+                <tbody id='da_result_tbody'>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- DA End Modal -->
 
 </body>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
