@@ -78,7 +78,8 @@ function setup_auth_workflow(){
     set_auth(base_url,login_url);
     $('#user').show();
     load_task_history(user_task_url);
-    showDA_tasks(); 
+    showDA_tasks();
+    $('.tr-result').hide() 
     //Load Inital Parameters
     load_workflow(data);
     $('#task').change(function(){task_change();});
@@ -383,6 +384,14 @@ function setTaskDisplay(data){
         $('#task_count').text('Task ' + rec_start + ' - ' + rec_end  +  ' Total ' + data.count )
     }
 
+}
+function showdaResult(url,id){
+    $.getJSON(url + ".json" , function(data){
+        json_data = JSON.stringify(data,null, 4);
+        $("#"+ id).html(json_data);
+        $("#" + id).urlize();
+        $("." + id).show();
+    });
 }
 function showResult(url){
     //myModalLabel -->title
