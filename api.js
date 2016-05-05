@@ -272,6 +272,7 @@ function load_success_da_only(item,tmpl){
 }
 function setDAid(ob){
     forecast_task_id= $(ob).val()
+    $('#visual_daf').val("Task ID: " + $(ob).val())
 }
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({
