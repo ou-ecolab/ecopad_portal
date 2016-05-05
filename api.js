@@ -10,7 +10,7 @@ $(function() {
     logout_url = base_url + "/api-auth/logout/?next=";
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
     user_url = base_url + "/user/?format=json";
-    prevlink=null;nextlink=null;
+    prevlink=null;nextlink=null;forecast_task_id="default";
     
     $("#aprofile").click(function(){activaTab('profile')})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
@@ -208,7 +208,7 @@ function submitWorkflow(){
             co2_treatment = co2_treatment + '.0'
         }
         task_data.args = [params,fyear,fday ]
-        task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
+        task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment,"da_task_id":forecast_task_id}
     }
     task_data.tags=tags
     url = "/api/queue/run/" + task_name + "/.json"
@@ -267,7 +267,7 @@ function load_success_da_only(item,tmpl){
     });
 }
 function setDAid(ob){
-    console.log($(ob).val());
+    forecast_task_id= $(ob).val()
 }
 $.postJSON = function(url, data, callback,fail) {
     return jQuery.ajax({
