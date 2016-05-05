@@ -210,6 +210,9 @@ function submitWorkflow(){
         task_data.args = [params,fyear,fday ]
         //"da_task_id":forecast_task_id
         task_data.kwargs = {"temperature_treatment":temp_treatment,"co2_treatment":co2_treatment}
+        if (forecast_task_id != "default"){
+            task_data.kwargs["da_task_id"]=forecast_task_id;
+        }
     }
     task_data.tags=tags
     url = "/api/queue/run/" + task_name + "/.json"
