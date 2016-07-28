@@ -82,8 +82,12 @@ templates['tmpl-forecast'] = template({"compiler":[7,">= 4.0.0"],"main":function
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<h3>Forecasting done on "
-    + alias4(((helper = (helper = helpers.gpp_url_timestamp || (depth0 != null ? depth0.gpp_url_timestamp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"gpp_url_timestamp","hash":{},"data":data}) : helper)))
-    + " time. <br><br></h3>\n\n<div style=\"max-width:60%;\" align=\"center\"> \n	<h4>GPP_WEEKLY_FORECAST</h4>\n	<img src=\""
+    + alias4(((helper = (helper = helpers.exact_date || (depth0 != null ? depth0.exact_date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"exact_date","hash":{},"data":data}) : helper)))
+    + "  "
+    + alias4(((helper = (helper = helpers.hour || (depth0 != null ? depth0.hour : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"hour","hash":{},"data":data}) : helper)))
+    + ":"
+    + alias4(((helper = (helper = helpers.minute || (depth0 != null ? depth0.minute : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"minute","hash":{},"data":data}) : helper)))
+    + " PM  <br><br></h3>\n\n<div style=\"max-width:60%;\" align=\"center\"> \n	<h4>GPP_WEEKLY_FORECAST</h4>\n	<img src=\""
     + alias4(((helper = (helper = helpers.gpp_url || (depth0 != null ? depth0.gpp_url : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"gpp_url","hash":{},"data":data}) : helper)))
     + "\" width=\"100%\" height=\"auto\" />\n</div>\n\n<div style=\"width:60%\" align=\"center\">\n	<h4>ER_WEEKLY_FORECAST</h4>\n	<img src=\""
     + alias4(((helper = (helper = helpers.er_url || (depth0 != null ? depth0.er_url : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"er_url","hash":{},"data":data}) : helper)))

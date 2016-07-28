@@ -109,10 +109,18 @@ var url="http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/?query={'fi
 	$.getJSON(url,function(data)
 	{er_url=data.results[0].result_url+"/plot/er_forecast_weekly.png";
 	er_url_timestamp=data.results[0].timestamp;	
+	//console.log(er_url_timestamp);
+	var divide=er_url_timestamp.split("T")
+    var exact_date=divide[0]
+    console.log(exact_date);
+    var hour=+divide[1].split(":")[0]+ +7;
+    //console.log(hour);
+    var minute=divide[1].split(":")[1]	
+	//console.log(minute);
 	gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png";
 	gpp_url_timestamp=data.results[0].timestamp;
-	templete_data={'er_url':er_url,'er_url_timestamp':er_url_timestamp,'gpp_url':gpp_url,'gpp_url_timestamp':gpp_url_timestamp}	
-	console.log(templete_data)
+	templete_data={'er_url':er_url,'exact_date':exact_date,'gpp_url':gpp_url,'hour':hour,'minute':minute}	
+	//console.log(templete_data)
 	$('#two_images').empty();
     workflow_template = Handlebars.templates['tmpl-forecast'];
     //desc_data ={"forcing_uncertainty_label":"Forcing Uncertainty","forcing_uncertainty_url":'bower_components/img/forcing_uncertainty.gif',
