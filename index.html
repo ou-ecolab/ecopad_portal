@@ -41,13 +41,15 @@
 <div role="tabpanel" class="tabbable" style="margin-top:1px;margin-left:1px;">
     <ul id='myTab_out' class="nav nav-tabs  " role="tablist">
         <li role="presentation" class="active"><a href="#homedesc" aria-controls="homedesc" role="tab" data-toggle="tab">EcoPAD</a></li>
-        <li role="presentation"><a id="workflow_link" href="#workflow" aria-controls="workflow" role="tab" data-toggle="tab">Custom Workflow</a></li>
-        <li role="presentation"><a id="image_link" href="#forecast_images" aria-controls="imageflow" role="tab" data-toggle="tab">Forecast Images</a></li>
+        <li role="presentation"><a id="image_link" href="#forecast_images" aria-controls="imageflow" onclick='loading();' role="tab" data-toggle="tab">SPRUCE Forecasting</a></li>
+        <li role="presentation"><a id="workflow_link" href="#workflow" aria-controls="workflow" role="tab" data-togle="tab">Custom Workflow</a></li>
+        
     </ul>
     <div id="myTabContent1" class="tab-content" style="margin-bottom:0px">
         <div role="tabpanel" class="tab-pane fade in active" id="homedesc">
             <h2>EcoPAD Description</h2>
         </div>
+     
        <!-- Forecast images div--> 
        <div role="tabpanel" class="tab-pane fade in active" id="forecast_images">
 		   <div style="width:75%" align="left"> 
