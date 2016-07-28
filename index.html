@@ -1,4 +1,3 @@
-
 <html>
 <head lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,11 +42,33 @@
     <ul id='myTab_out' class="nav nav-tabs  " role="tablist">
         <li role="presentation" class="active"><a href="#homedesc" aria-controls="homedesc" role="tab" data-toggle="tab">EcoPAD</a></li>
         <li role="presentation"><a id="workflow_link" href="#workflow" aria-controls="workflow" role="tab" data-toggle="tab">Custom Workflow</a></li>
+        <li role="presentation"><a id="image_link" href="#forecast_images" aria-controls="imageflow" role="tab" data-toggle="tab">Forecast Images</a></li>
     </ul>
     <div id="myTabContent1" class="tab-content" style="margin-bottom:0px">
         <div role="tabpanel" class="tab-pane fade in active" id="homedesc">
             <h2>EcoPAD Description</h2>
         </div>
+       <!-- Forecast images div--> 
+       <div role="tabpanel" class="tab-pane fade in active" id="forecast_images">
+		   <div style="width:75%" align="left"> 
+            <h2>Ecological forecasting at SPRUCE (weekly)</h2>
+            <p>Forecasting of GPP and ER are automated at weekly timescale. Mean trajectory and confidence interval were derived from 100 stochastic simulations. In each simulation, parameters were randomly chosen from previous (or default) Data Assimilation task. Forcing variables were linked to SPRUCE ftp site where updated hourly. Data assimilation is run irregularly, whenever observation data is compiled manually, then update the parameters.</p>
+            </div>
+            <select id="one" onchange="show_images()">
+				<option value="EM1_FORECAST_380_0">Ambient [CO2]: 380, Warming treatment: +0 C</option>
+				<option value="EM1_FORECAST_380_2.25">Ambient [CO2]: 380, Warming treatment: +2.25 C</option>
+				<option value="EM1_FORECAST_380_4.5">Ambient [CO2]: 380, Warming treatment: +4.5 C</option>
+				<option value="EM1_FORECAST_380_6.75">Ambient [CO2]: 380, Warming treatment: +6.75 C</option>
+				<option value="EM1_FORECAST_380_9">Ambient [CO2]: 380, Warming treatment: +9 C</option>
+				<option value="EM1_FORECAST_800_0">Elevated [CO2]: 800, Warming treatment: +0 C</option>
+				<option value="EM1_FORECAST_800_2.25">Elevated [CO2]: 800, Warming treatment: +2.25 C</option>
+				<option value="EM1_FORECAST_800_4.5">Elevated [CO2]: 800, Warming treatment: +4.5 C</option>
+				<option value="EM1_FORECAST_800_6.75">Elevated [CO2]: 800, Warming treatment: +6.75 C</option>
+				<option value="EM1_FORECAST_800_9">Elevated [CO2]: 800, Warming treatment: +9 C</option>
+			</select>
+				<div id="two_images"> </div>
+        </div>
+        
         <div role="tabpanel" class="tab-pane fade" id="workflow">
 <!-- Start inside tab -->
 <div role="tabpanel" class="tabbable" >
