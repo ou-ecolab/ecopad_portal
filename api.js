@@ -85,7 +85,7 @@ function show_images(){
             gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png"
             //set local time
             ctimestamp=data.results[0].timestamp;
-            temp = new Date(ts + "Z");
+            temp = new Date(ctimestamp + "Z");
             exact_date=temp.toLocaleDateString() + "  " + temp.toLocaleTimeString()
 	    templete_data={'er_url':er_url,'exact_date':exact_date,'gpp_url':gpp_url}	
 	    $('#two_images').empty();
