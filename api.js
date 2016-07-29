@@ -77,41 +77,21 @@ function load_frontpage(){
     });
 }
 function show_images(){
-	//alert('hi');
-	var tag_val=document.getElementById("one").value;
+	var tag_val= $('#one').val()
 	console.log(tag_val)
 	var url="http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/?query={'filter':{'tag':'"+tag_val+"'},'sort':[('timestamp',-1)]}&page_size=1"
-	$.getJSON(url,function(data)
-	{er_url=data.results[0].result_url+"/plot/er_forecast_weekly.png";
-	er_url_timestamp=data.results[0].timestamp;	
-	gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png";
-	gpp_url_timestamp=data.results[0].timestamp;
-	var divide=er_url_timestamp.split("T")
-    var exact_date=divide[0]
-    console.log(exact_date);
-    var hour=+divide[1].split(":")[0]+ +7;
-    //console.log(hour);
-    var minute=divide[1].split(":")[1]	
-	//console.log(minute);
-	gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png";
-	gpp_url_timestamp=data.results[0].timestamp;
-	templete_data={'er_url':er_url,'exact_date':exact_date,'gpp_url':gpp_url,'hour':hour,'minute':minute}	
-	//console.log(templete_data)	
-	console.log(templete_data)
-	$('#two_images').empty();
-    workflow_template = Handlebars.templates['tmpl-forecast'];
-    //desc_data ={"forcing_uncertainty_label":"Forcing Uncertainty","forcing_uncertainty_url":'bower_components/img/forcing_uncertainty.gif',
-              //  "add_data_label":"Added Data","add_data_url":'bower_components/img/add_data.gif'}
-    $('#two_images').append(workflow_template(templete_data));
-		
+	$.getJSON(url,function(data){
+            er_url=data.results[0].result_url+"/plot/er_forecast_weekly.png";
+            gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png
+            //set local time
+            ctimestamp=data.results[0].timestamp;
+            temp = new Date(ts + "Z");
+            exact_date=temp.toLocaleDateString() + "  " + temp.toLocaleTimeString()
+	    templete_data={'er_url':er_url,'exact_date':exact_date,'gpp_url':gpp_url}	
+	    $('#two_images').empty();
+            workflow_template = Handlebars.templates['tmpl-forecast'];
+            $('#two_images').append(workflow_template(templete_data));		
 	})
-	 //myjson = myjson.replace(/"/g,"");
-	//$.getJSON("http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/.json",function(data)
-	//{myjson=JSON.stringify(data.results[1].result_url);})
-	//myjson = myjson.replace(/"/g,"");
-	//var str2="/plot/er_forecast.png";
-	//var str3=myjson.concat(str2);
-	//load_task_history(user_task_url)
 }
 
 function loading(){
