@@ -40,6 +40,7 @@ $(function() {
         });
         }  , 60000 );
     $('#resetDA').click(function(){forecast_task_id="default";$('#visual_daf').val("Default Data Assimilation");});
+   show_images() 
 });//End of Document Ready
 
 function load_frontpage(){
@@ -94,7 +95,7 @@ function show_images(){
 	})
 }
 
-function loading(){
+/*function loading(){
 var url="http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/?query={'filter':{'tag':'EM1_FORECAST_380_0'},'sort':[('timestamp',-1)]}&page_size=1"
 	$.getJSON(url,function(data)
 	{er_url=data.results[0].result_url+"/plot/er_forecast_weekly.png";
@@ -118,7 +119,7 @@ var url="http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/?query={'fi
     $('#two_images').append(workflow_template(templete_data));
 		
 	})
-}
+}*/
 function setup_auth_workflow(){
     set_auth(base_url,login_url);
     $('#user').show();
