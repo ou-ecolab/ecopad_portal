@@ -55,7 +55,8 @@
             <h2>Ecological forecasting at SPRUCE (weekly)</h2>
             <p>Forecasting of GPP and ER are automated at weekly timescale. Mean trajectory and confidence interval were derived from 100 stochastic simulations. In each simulation, parameters were randomly chosen from previous (or default) Data Assimilation task. Forcing variables were linked to SPRUCE ftp site where updated hourly. Data assimilation is run irregularly, whenever observation data is compiled manually, then update the parameters.</p>
             </div>
-                        <select id="forecast_select">
+                <div class="col-md-6" style="padding-left:0px;">
+                        <select id="forecast_select" class="form-control input-sm ">
 				<option selected="selected" value="EM1_FORECAST_380_0">Ambient [CO2]: 380, Warming treatment: +0 &#8451;</option>
 				<option value="EM1_FORECAST_380_2.25">Ambient [CO2]: 380, Warming treatment: +2.25 &#8451;</option>
 				<option value="EM1_FORECAST_380_4.5">Ambient [CO2]: 380, Warming treatment: +4.5 &#8451;</option>
@@ -67,7 +68,8 @@
 				<option value="EM1_FORECAST_800_6.75">Elevated [CO2]: 800, Warming treatment: +6.75 &#8451;</option>
 				<option value="EM1_FORECAST_800_9">Elevated [CO2]: 800, Warming treatment: +9 &#8451;</option>
 			</select>
-				<div id="two_images"> </div>
+                </div>
+				<div id="two_images" style="clear:both;margin-top:50px;"> </div>
         </div>
         
         <div role="tabpanel" class="tab-pane fade" id="workflow">
