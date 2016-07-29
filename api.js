@@ -82,7 +82,7 @@ function show_images(){
 	var url="http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/?query={'filter':{'tag':'"+tag_val+"'},'sort':[('timestamp',-1)]}&page_size=1"
 	$.getJSON(url,function(data){
             er_url=data.results[0].result_url+"/plot/er_forecast_weekly.png";
-            gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png
+            gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png"
             //set local time
             ctimestamp=data.results[0].timestamp;
             temp = new Date(ts + "Z");
