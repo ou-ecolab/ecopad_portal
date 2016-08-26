@@ -81,7 +81,7 @@ function load_frontpage(){
 function show_images(){
 	var tag_val= $('#forecast_select').val()
 	console.log(tag_val)
-	var url="http://ecolab.oscer.ou.edu/api/catalog/data/forecast/public/?query={'filter':{'tag':'"+tag_val+"'},'sort':[('timestamp',-1)]}&page_size=1"
+	var url="/api/catalog/data/forecast/public/?query={'filter':{'tag':'"+tag_val+"'},'sort':[('timestamp',-1)]}&page_size=1"
 	$.getJSON(url,function(data){
             er_url=data.results[0].result_url+"/plot/er_forecast_weekly.png";
             gpp_url=data.results[0].result_url+"/plot/gpp_forecast_weekly.png"
